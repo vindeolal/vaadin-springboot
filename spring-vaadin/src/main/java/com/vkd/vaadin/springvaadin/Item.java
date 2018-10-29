@@ -8,10 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Item {
 
-    public Long getId() {
-        return id;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +22,10 @@ public class Item {
 
     public Item() {
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

@@ -11,6 +11,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringComponent
@@ -39,7 +40,7 @@ public class ItemEditor extends VerticalLayout implements KeyNotifier {
     public ItemEditor(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
         add(name, quantity, actions);
-        //for integer field
+        //integer field binding
         binder.forField(quantity)
                 .withConverter(new StringToIntegerConverter(""))
                 .bind(Item::getQuantity, Item::setQuantity);
@@ -59,16 +60,19 @@ public class ItemEditor extends VerticalLayout implements KeyNotifier {
 
     }
 
+    //delete operation
     void delete() {
         itemRepository.delete(item);
         changeHandler.itemChanged();
     }
 
+    //save operation
     void save() {
         itemRepository.save(item);
         changeHandler.itemChanged();
     }
 
+    //to edit and item in grid
     public final void editItem(Item i) {
         if (i == null) {
             setVisible(false);
