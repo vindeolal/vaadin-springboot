@@ -48,11 +48,13 @@ public class MainView extends VerticalLayout {
         listItems(null);
     }
 
+    //create layout for UI
     private void addLayout() {
         layout = new VerticalLayout();
         layout.setAlignItems(Alignment.CENTER);
     }
 
+    //add label to layout
     private void addLabel() {
         Label label = new Label("Inventory System");
         label.getStyle().set("font-size", "32px");
@@ -62,6 +64,7 @@ public class MainView extends VerticalLayout {
         layout.setHorizontalComponentAlignment(Alignment.CENTER, label);
     }
 
+    //add filter field and button to add new items
     private void addFilterAndAddFields() {
         searchField.setPlaceholder("Filter by item name");
         searchField.focus();
@@ -74,6 +77,7 @@ public class MainView extends VerticalLayout {
         addButton.addClickListener(e -> itemEditor.editItem(new Item("", 0)));
     }
 
+    //create a grid to display all the items
     private void addItemGrid() {
         grid.setHeight("300px");
         grid.setColumns("id", "name", "quantity");
@@ -84,7 +88,8 @@ public class MainView extends VerticalLayout {
         });
     }
 
-    void listItems(String filterText) {
+    //fetch items based on item name passed
+    private void listItems(String filterText) {
         if (StringUtils.isEmpty(filterText)) {
             grid.setItems(repository.findAll());
         } else {

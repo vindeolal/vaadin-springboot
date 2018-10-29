@@ -61,13 +61,13 @@ public class ItemEditor extends VerticalLayout implements KeyNotifier {
     }
 
     //delete operation
-    void delete() {
+    private void delete() {
         itemRepository.delete(item);
         changeHandler.itemChanged();
     }
 
     //save operation
-    void save() {
+    private void save() {
         itemRepository.save(item);
         changeHandler.itemChanged();
     }
